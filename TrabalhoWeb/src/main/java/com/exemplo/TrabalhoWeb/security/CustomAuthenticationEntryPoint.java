@@ -17,6 +17,14 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
     public void commence(HttpServletRequest request,
                          HttpServletResponse response,
                          AuthenticationException authException) throws IOException, ServletException {
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+        // Verifica se o código de status da resposta é 403
+        if (response.getStatus() == HttpServletResponse.SC_FORBIDDEN) {
+            // Se for 403, envia o erro 401
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+        } else {
+            // Caso contrário, continua com o fluxo normal e deixa o contêiner lidar com o erro
+            throw authException;
+        }
     }
 }
+

@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -45,9 +46,9 @@ public class Reserva implements Serializable {
     @JoinColumn(name = "id_hotel")
     private Hotel hotelReserva;
 
-    // @OneToOne
-    // @JoinColumn(name = "id_pagamento")
-    // private Pagamento reservaPagamento;
+    @OneToOne
+    @JoinColumn(name = "id_pagamento")
+    private Pagamento reservaPagamento;
 
     // Construtores, getters e setters gerados automaticamente pelo Lombok
 }
