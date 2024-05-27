@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,10 +30,10 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_cliente")
     private Long idCliente;
-    
+
     @Column(name = "nome")
     private String nomeCliente;
-    @NotEmpty(message="Nome do cliente não pode ser vazio!")
+    @NotEmpty(message = "Nome do cliente não pode ser vazio!")
     @NotNull(message = "Nome do cliente não pode ser nulo!")
 
     @Column(name = "email")
@@ -48,8 +50,9 @@ public class Cliente implements Serializable {
 
     @Column(name = "cpf")
     private String cpfCliente;
-    
+
     @OneToMany(mappedBy = "clienteReserva")
+    @JsonIgnore // Ignora a serialização desta propriedade
     private List<Reserva> reservas;
     // Construtores, getters e setters gerados automaticamente pelo Lombok
 }

@@ -3,6 +3,8 @@ package com.exemplo.TrabalhoWeb.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -45,5 +47,6 @@ public class Hotel implements Serializable {
     private String websiteHotel;
 
     @OneToMany(mappedBy = "hotelReserva")
+    @JsonIgnore // Ignora a serialização desta propriedade
     private List<Reserva> reservas;
 }

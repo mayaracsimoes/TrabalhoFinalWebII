@@ -22,4 +22,5 @@ public interface ReservaRepository extends JpaRepository<Reserva, Integer> {
     List<Reserva> findByHotelReserva_IdHotel(Integer hotelReserva);
 
     List<Reserva> findByQuartoReserva_numeroQuarto(String quartoReserva);
+
 }

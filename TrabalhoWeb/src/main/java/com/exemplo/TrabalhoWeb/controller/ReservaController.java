@@ -66,7 +66,7 @@ public class ReservaController {
         }
     }
 
-    @GetMapping("/buscarPorHotel")
+    @GetMapping("/buscarPorIdHotel")
     public ResponseEntity<?> buscarReservaPorHotel(@RequestParam Integer hotel) {
         List<Reserva> reservas = reservaService.buscarReservaPorHotel(hotel);
         if (!reservas.isEmpty()) {
@@ -97,10 +97,10 @@ public class ReservaController {
     public ResponseEntity<Map<String, String>> deletarReserva(@PathVariable Integer id) {
         try {
             reservaService.deletarReserva(id);
-            return ResponseEntity.ok(Map.of("status", "OK", "mensagem", "Reserva deletado com sucesso."));
+            return ResponseEntity.ok(Map.of("status", "OK", "mensagem", "Reserva deletada com sucesso."));
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Map.of("status", "ERRO", "mensagem", "Reserva não encontrado com o ID: " + id));
+                    .body(Map.of("status", "ERRO", "mensagem", "Reserva não encontrada com o ID: " + id));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(Map.of("status", "ERRO", "mensagem", e.getMessage()));
