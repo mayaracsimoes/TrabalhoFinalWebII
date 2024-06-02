@@ -15,15 +15,19 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 
     @Override
     public void commence(HttpServletRequest request,
-                         HttpServletResponse response,
-                         AuthenticationException authException) throws IOException, ServletException {
-        // Verifica se o código de status da resposta é 403
-        if (response.getStatus() == HttpServletResponse.SC_FORBIDDEN) {
-            // Se for 403, envia o erro 401
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+            HttpServletResponse response,
+            AuthenticationException authException) throws IOException, ServletException {
+        // Obtendo o status code da resposta
+        int statusCode = response.getStatus();
+        System.out.println("Status code da resposta: " + statusCode);
+
+        // Verifica se o status code recebido é diferente de 200 (OK)
+        if (statusCode != HttpServletResponse.SC_OK) {
+            // Retorna o status code recebido
+            response.sendError(statusCode);
         } else {
-            // Caso contrário, continua com o fluxo normal e deixa o contêiner lidar com o erro
-            throw authException;
+            // Se for 200 (OK), retorna Unauthorized (401)
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
         }
     }
 }

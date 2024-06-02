@@ -78,18 +78,23 @@ public class ReservaController {
     }
 
     @PostMapping
-    public ResponseEntity<Reserva> cadastrarReserva(@RequestBody Reserva reserva) {
-        Reserva novaReserva = reservaService.cadastrarReserva(reserva);
-        return new ResponseEntity<>(novaReserva, HttpStatus.CREATED);
+    public ResponseEntity<?> cadastrarReserva(@RequestBody Reserva reserva) {
+        try {
+            Reserva novaReserva = reservaService.cadastrarReserva(reserva);
+            return new ResponseEntity<>(novaReserva, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao inserir reserva. Detalhes: " + e.getMessage());
+        }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Reserva> atualizarReserva(@PathVariable Long id, @RequestBody Reserva reservaAtualizada) {
+    public ResponseEntity<?> atualizarReserva(@PathVariable Long id, @RequestBody Reserva reservaAtualizada) {
+        System.out.println(id);
         Reserva reserva = reservaService.atualizarReserva(id, reservaAtualizada);
         if (reserva != null) {
             return new ResponseEntity<>(reserva, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Reserva não encontrada com o ID: " + id);
         }
     }
 

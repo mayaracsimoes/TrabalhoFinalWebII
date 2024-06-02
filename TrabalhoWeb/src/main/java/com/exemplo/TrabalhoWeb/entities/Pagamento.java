@@ -3,6 +3,8 @@ package com.exemplo.TrabalhoWeb.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,7 +37,8 @@ public class Pagamento implements Serializable {
     @Column(name = "metodo")
     private String metodoPagamento;
 
-    @OneToOne(mappedBy = "reservaPagamento")
+    @OneToOne(mappedBy = "pagamentoReserva")
+    @JsonIgnore
     private Reserva reserva;
 
     // Construtores, getters e setters gerados automaticamente pelo Lombok

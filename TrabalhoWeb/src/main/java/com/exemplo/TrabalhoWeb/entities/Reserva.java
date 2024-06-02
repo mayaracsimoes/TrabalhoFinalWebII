@@ -48,7 +48,7 @@ public class Reserva implements Serializable {
 
     @OneToOne
     @JoinColumn(name = "id_pagamento")
-    private Pagamento reservaPagamento;
+    private Pagamento pagamentoReserva;
 
     // Construtores, getters e setters gerados automaticamente pelo Lombok
 }

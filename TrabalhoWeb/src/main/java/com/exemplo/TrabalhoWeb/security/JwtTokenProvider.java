@@ -13,7 +13,7 @@ import io.jsonwebtoken.SignatureException;
 public class JwtTokenProvider {
 
     private final String secret = "secreto"; // Chave secreta para assinar os tokens
-    private final long validityInMilliseconds = 3600000; // Tempo de validade do token (1 hora)
+    private final long validityInMilliseconds = 28800000; // Tempo de validade do token (8 horas)
 
     public String generateToken(String username) {
         Date now = new Date();

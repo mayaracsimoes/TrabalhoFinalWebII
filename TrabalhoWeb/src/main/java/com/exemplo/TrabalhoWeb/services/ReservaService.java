@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.exemplo.TrabalhoWeb.entities.Reserva;
+import com.exemplo.TrabalhoWeb.exception.DataIntegrityViolationException;
 import com.exemplo.TrabalhoWeb.exception.NoSuchElementException;
 import com.exemplo.TrabalhoWeb.repository.ReservaRepository;
 
@@ -25,7 +26,11 @@ public class ReservaService {
     }
 
     public Reserva cadastrarReserva(Reserva reserva) {
-        return reservaRepository.save(reserva);
+        try {
+            return reservaRepository.save(reserva);
+        } catch (DataIntegrityViolationException e) {
+            throw new RuntimeException("Erro ao inserir reserva. Detalhes: " + e.getMessage(), e);
+        }
     }
 
     public Reserva atualizarReserva(Long id, Reserva reserva) {
