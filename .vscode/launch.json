@@ -9,6 +9,16 @@
             "projectName": "aula",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-TrabalhoWeb<aula>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.exemplo.TrabalhoWeb.TrabalhoWeb",
+            "projectName": "aula",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
