@@ -2,6 +2,7 @@ package com.exemplo.TrabalhoWeb.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,6 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
@@ -50,5 +53,8 @@ public class Reserva implements Serializable {
     @JoinColumn(name = "id_pagamento")
     private Pagamento pagamentoReserva;
 
+    @ManyToMany
+    @JoinTable(name = "reserva_servico", joinColumns = @JoinColumn(name = "id_reserva"), inverseJoinColumns = @JoinColumn(name = "id_servico"))
+    private List<Servico> servicos;
     // Construtores, getters e setters gerados automaticamente pelo Lombok
 }

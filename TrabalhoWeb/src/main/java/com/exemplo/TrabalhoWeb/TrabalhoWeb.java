@@ -11,10 +11,12 @@ import com.exemplo.TrabalhoWeb.entities.Cliente;
 import com.exemplo.TrabalhoWeb.entities.Hotel;
 import com.exemplo.TrabalhoWeb.entities.Pagamento;
 import com.exemplo.TrabalhoWeb.entities.Quarto;
+import com.exemplo.TrabalhoWeb.entities.Servico;
 import com.exemplo.TrabalhoWeb.repository.ClienteRepository;
 import com.exemplo.TrabalhoWeb.repository.HotelRepository;
 import com.exemplo.TrabalhoWeb.repository.PagamentoRepository;
 import com.exemplo.TrabalhoWeb.repository.QuartoRepository;
+import com.exemplo.TrabalhoWeb.repository.ServicoRepository;
 
 @SpringBootApplication
 public class TrabalhoWeb implements CommandLineRunner {
@@ -30,6 +32,9 @@ public class TrabalhoWeb implements CommandLineRunner {
 
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+
+	@Autowired
+	private ServicoRepository servicoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TrabalhoWeb.class, args);
@@ -114,5 +119,15 @@ public class TrabalhoWeb implements CommandLineRunner {
         pagamento3.setValorPagamento(200.00);
         pagamento3.setMetodoPagamento("Transferência Bancária");
 		pagamentoRepository.save(pagamento3);
+
+		Servico servico1 = new Servico();
+		servico1.setNomeServico("Serviço de Limpeza");
+		servico1.setDescricaoServico("Serviço de limpeza diária do quarto");
+		servicoRepository.save(servico1);
+
+		Servico servico2 = new Servico();
+		servico2.setNomeServico("Serviço de Alimentação");
+		servico2.setDescricaoServico("Refeições incluídas durante a estadia no hotel");
+		servicoRepository.save(servico2);
 	}
 }
