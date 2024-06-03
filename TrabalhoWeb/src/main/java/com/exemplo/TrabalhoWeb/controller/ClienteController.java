@@ -33,7 +33,6 @@ public class ClienteController {
         return new ResponseEntity<>(clientes, HttpStatus.OK);
     }
     
-
     @GetMapping("/{id}")
     public ResponseEntity<?> buscarClientePorId(@PathVariable Integer id) {
         Optional<Cliente> cliente = cService.buscarClientePorId(id);

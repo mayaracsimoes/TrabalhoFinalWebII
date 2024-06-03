@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.exemplo.TrabalhoWeb.config.security.JwtTokenProvider;
 import com.exemplo.TrabalhoWeb.entities.AuthRequest;
 import com.exemplo.TrabalhoWeb.entities.AuthResponse;
-import com.exemplo.TrabalhoWeb.security.JwtTokenProvider;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController

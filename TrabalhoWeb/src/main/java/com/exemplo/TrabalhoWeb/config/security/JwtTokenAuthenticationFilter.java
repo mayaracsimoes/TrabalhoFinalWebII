@@ -1,4 +1,4 @@
-package com.exemplo.TrabalhoWeb.security;
+package com.exemplo.TrabalhoWeb.config.security;
 
 import java.io.IOException;
 import java.util.Collections;

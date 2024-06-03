@@ -1,4 +1,4 @@
-package com.exemplo.TrabalhoWeb.security;
+package com.exemplo.TrabalhoWeb.config.security;
 
 import java.io.IOException;
 
@@ -19,6 +19,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
             AuthenticationException authException) throws IOException, ServletException {
         // Obtendo o status code da resposta
         int statusCode = response.getStatus();
+        System.out.println("Request:" + request.getRequestURI());
         System.out.println("Status code da resposta: " + statusCode);
 
         // Verifica se o status code recebido é diferente de 200 (OK)

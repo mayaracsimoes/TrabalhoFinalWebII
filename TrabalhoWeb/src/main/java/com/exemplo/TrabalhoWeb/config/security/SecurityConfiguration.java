@@ -1,4 +1,4 @@
-package com.exemplo.TrabalhoWeb.security;
+package com.exemplo.TrabalhoWeb.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +24,11 @@ public class SecurityConfiguration {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/swagger-ui/**").permitAll()
+                        .requestMatchers("/v3/api-docs/**").permitAll()
+                        .requestMatchers("/swagger-resources/**").permitAll()
+                        .requestMatchers("/webjars/**").permitAll()
+                        .requestMatchers("/v2/api-docs").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(new JwtTokenAuthenticationFilter(tokenProvider),
                         UsernamePasswordAuthenticationFilter.class)

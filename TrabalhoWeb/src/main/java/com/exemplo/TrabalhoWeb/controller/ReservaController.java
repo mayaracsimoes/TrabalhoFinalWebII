@@ -22,6 +22,7 @@ import com.exemplo.TrabalhoWeb.exception.NoSuchElementException;
 import com.exemplo.TrabalhoWeb.services.ReservaService;
 
 @RestController
+
 @RequestMapping("/reserva")
 public class ReservaController {
 
@@ -33,7 +34,7 @@ public class ReservaController {
         List<Reserva> reservas = reservaService.listarReservas();
         return new ResponseEntity<>(reservas, HttpStatus.OK);
     }
-
+    
     @GetMapping("/{id}")
     public ResponseEntity<?> buscarReservaPorId(@PathVariable Integer id) {
         Optional<Reserva> reserva = reservaService.buscarReservaPorId(id);
