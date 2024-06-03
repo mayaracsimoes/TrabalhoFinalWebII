@@ -1,0 +1,1477 @@
+{
+	"info": {
+		"_postman_id": "686e7456-d8ea-407b-a1e9-9d86f73f21f3",
+		"name": "TrabalhoWeb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18841838"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "POSTAuth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"token\", jsonData.accessToken);",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"abc123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "GETClienteByID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080\\cliente\\1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cliente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GETClientes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n           \"nomeCliente\": \"Mayarinha biruta\",\r\n           \"emailCliente\": \"joao.silva@example.com\",\r\n           \"telefoneCliente\": \"123456789\",\r\n           \"enderecoCliente\": \"Rua Exemplo, 123\",\r\n           \"dataNascimentoCliente\": \"1980-01-01\",\r\n           \"cpfCliente\": \"123.456.789-00\"\r\n         }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080\\cliente",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GETClienteByName",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/cliente/buscarPorNome?nome=b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cliente",
+								"buscarPorNome"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POSTCliente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n           \"nomeCliente\": \"biruta\",\r\n           \"emailCliente\": \"joao.silva@example.com\",\r\n           \"telefoneCliente\": \"123456789\",\r\n           \"enderecoCliente\": \"Rua Exemplo, 123\",\r\n           \"dataNascimentoCliente\": \"1980-01-01\",\r\n           \"cpfCliente\": \"123.456.789-00\"\r\n         }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080\\cliente",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutCliente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeCliente\": \"Novo Nome\",\r\n    \"emailCliente\": \"novoemail@example.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/cliente/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cliente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCliente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeCliente\": \"Novo Nome\",\r\n    \"emailCliente\": \"novoemail@example.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/cliente/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cliente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hotel",
+			"item": [
+				{
+					"name": "GETHotelByID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080\\hotel\\3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"hotel",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GETHoteis",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080\\hotel",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"hotel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GETHotelByName",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/hotel/buscarPorNome?nome=may",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"hotel",
+								"buscarPorNome"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "may"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POSTHotel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeHotel\": \"Hotel may\",\r\n    \"localizacaoHotel\": \"São Paulo, Brasil\",\r\n    \"enderecoHotel\": \"Av. Paulista, 1234\",\r\n    \"telefoneHotel\": \"+55 11 1234-5678\",\r\n    \"emailHotel\": \"contato@hotelexemplo.com\",\r\n    \"websiteHotel\": \"http://www.hotelexemplo.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080\\hotel",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"hotel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutHotel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeHotel\": \"Hotel may2\",\r\n    \"localizacaoHotel\": \"São Paulo, Brasil\",\r\n    \"enderecoHotel\": \"Av. Paulista, 1234\",\r\n    \"telefoneHotel\": \"+55 11 1234-5678\",\r\n    \"emailHotel\": \"contato@hotelexemplo.com\",\r\n    \"websiteHotel\": \"http://www.hotelexemplo.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/hotel/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"hotel",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteHotel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/hotel/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"hotel",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Serviço",
+			"item": [
+				{
+					"name": "GETServicoByID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080\\servico\\2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"servico",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GETServicoByReserva",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080\\servico\\reserva\\2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"servico",
+								"reserva",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GETServicos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080\\servico",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"servico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GETServicoByName",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/servico/buscarPorNome?nomeServico=limp",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"servico",
+								"buscarPorNome"
+							],
+							"query": [
+								{
+									"key": "nomeServico",
+									"value": "limp"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POSTServico",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nomeServico\": \"Serviço de Limpeza\",\r\n  \"descricaoServico\": \"Serviço de limpeza diária do quarto\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080\\servico",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"servico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutServico",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nomeServico\": \"Serviço de Limpeza teste\",\r\n  \"descricaoServico\": \"Serviço de limpeza diária do quarto\",\r\n  \"reservas\": [] // Aqui você pode incluir as reservas associadas ao serviço, se aplicável\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/servico/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"servico",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteServico",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/servico/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"servico",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quarto",
+			"item": [
+				{
+					"name": "GETQuartoByID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080\\quarto\\3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"quarto",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GETQuartos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080\\quarto",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"quarto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GETQuartoByDescricao",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/quarto/buscarPorDescricao?nome=mar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"quarto",
+								"buscarPorDescricao"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "mar"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GETQuartoByTipo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/quarto/buscarPorTipo?tipoQuarto=de",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"quarto",
+								"buscarPorTipo"
+							],
+							"query": [
+								{
+									"key": "tipoQuarto",
+									"value": "de"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POSTQuarto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numeroQuarto\": \"102\",\r\n  \"tipoQuarto\": \"Deluxe\",\r\n  \"precoDiariaQuarto\": 150.0,\r\n  \"descricaoQuarto\": \"Quarto com vista para o mar.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080\\quarto",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"quarto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutQuarto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numeroQuarto\": \"102\",\r\n  \"tipoQuarto\": \"Deluxe\",\r\n  \"precoDiariaQuarto\": 150.0,\r\n  \"descricaoQuarto\": \"Quarto com vista para o mar.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/quarto/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"quarto",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteQuarto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/quarto/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"quarto",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reserva",
+			"item": [
+				{
+					"name": "GETReservaByID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080\\reserva\\3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reserva",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GETReservas",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080\\reserva",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reserva"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GETReservaByCliente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/reserva/buscarPorIdCliente?cliente=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reserva",
+								"buscarPorIdCliente"
+							],
+							"query": [
+								{
+									"key": "cliente",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GETReservaByHotel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/reserva/buscarPorIdHotel?hotel=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reserva",
+								"buscarPorIdHotel"
+							],
+							"query": [
+								{
+									"key": "hotel",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GETReservaByQuarto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/reserva/buscarPorQuarto?quarto=101",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reserva",
+								"buscarPorQuarto"
+							],
+							"query": [
+								{
+									"key": "quarto",
+									"value": "101"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POSTReserva",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dataInicioReserva\": \"2024-06-01\",\r\n    \"dataFimReserva\": \"2024-06-05\",\r\n    \"clienteReserva\": {\r\n        \"idCliente\": 1\r\n    },\r\n    \"quartoReserva\": {\r\n        \"idQuarto\": 1,\r\n        \"numeroQuarto\": \"101\",\r\n        \"tipoQuarto\": \"Single\",\r\n        \"precoDiariaQuarto\": 100.00,\r\n        \"descricaoQuarto\": \"Quarto Single com banheiro privativo\"\r\n    },\r\n    \"hotelReserva\": {\r\n        \"idHotel\": 1,\r\n        \"nomeHotel\": \"Nome do Hotel\",\r\n        \"localizacaoHotel\": \"Localização do Hotel\",\r\n        \"enderecoHotel\": \"Endereço do Hotel\",\r\n        \"telefoneHotel\": \"987654321\",\r\n        \"emailHotel\": \"hotel@example.com\",\r\n        \"websiteHotel\": \"http://www.hotel.com\"\r\n    },\r\n    \"pagamentoReserva\": {\r\n        \"idPagamento\": 3\r\n    },\r\n    \"servicos\": [\r\n    {\r\n      \"idServico\": 1,\r\n      \"nomeServico\": \"Serviço de Limpeza\",\r\n      \"descricaoServico\": \"Serviço de limpeza diária do quarto\"\r\n    },\r\n    {\r\n      \"idServico\": 4,\r\n      \"nomeServico\": \"Serviço de Alimentação\",\r\n      \"descricaoServico\": \"Refeições incluídas durante a estadia no hotel\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080\\reserva",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reserva"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutReserva",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dataInicioReserva\": \"2024-06-01\",\r\n    \"dataFimReserva\": \"2024-06-05\",\r\n    \"clienteReserva\": {\r\n        \"idCliente\": 1,\r\n        \"nome\": \"Fulano de Tal\",\r\n        \"email\": \"fulano@example.com\",\r\n        \"telefone\": \"(11) 98765-4321\"\r\n    },\r\n    \"quartoReserva\": {\r\n        \"idQuarto\": 1,\r\n        \"numeroQuarto\": \"101\",\r\n        \"tipoQuarto\": \"Standard\",\r\n        \"precoDiariaQuarto\": 150.0,\r\n        \"descricaoQuarto\": \"Quarto Standard com cama de casal e banheiro privativo\"\r\n    },\r\n    \"hotelReserva\": {\r\n        \"idHotel\": 2,\r\n        \"nomeHotel\": \"Hotel Exemplo\",\r\n        \"localizacaoHotel\": \"São Paulo, Brasil\",\r\n        \"enderecoHotel\": \"Rua Exemplo, 123\",\r\n        \"telefoneHotel\": \"(11) 1234-5678\",\r\n        \"emailHotel\": \"hotel@example.com\",\r\n        \"websiteHotel\": \"https://www.hotelexemplo.com\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/reserva/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reserva",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteReserva",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/reserva/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reserva",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pagamento",
+			"item": [
+				{
+					"name": "GETPagamentoByID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080\\pagamento\\3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pagamento",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GETPagamentos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080\\pagamento",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pagamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POSTPagamento",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"IdPagamento\": 1,\r\n        \"dataPagamento\": \"2024-05-30\",\r\n        \"valorPagamento\": 400.00,\r\n        \"metodoPagamento\": \"Cartão de Crédito\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080\\pagamento",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pagamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutPagamento",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"dataPagamento\": \"2024-05-30\",\r\n        \"valorPagamento\": 4550.06,\r\n        \"metodoPagamento\": \"Cartão de Crédito\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pagamento/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pagamento",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeletePagamento",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pagamento/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pagamento",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcxNjc0Nzc4OSwiZXhwIjoxNzE2NzUxMzg5fQ.bnVQvDmYeX4XkEe9oy3uM-nLsm2xEX8Ivc9awTtzkK_H8dYxfpRsAiZXRI_MG_INKyKBQcIIUNteLVLbU8DLfA"
+		}
+	]
+}
